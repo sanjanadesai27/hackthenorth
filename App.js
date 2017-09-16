@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import AppPresenter from './src/app/presenter.js'
+import { Scene, Router, Actions, Stack } from 'react-native-router-flux';
+import Login from './src/app/login.js';
+import Register from './src/app/register.js';
+import Home from './src/app/home.js';
+import QrReader from './src/app/qrReader.js';
+ 
 
-export default class App extends React.Component {
+//this is our index
+export default class AppContainer extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Router> 
+        <Scene key="root"> 
+          <Scene key="home" component={Home} title="Home"/>
+          <Scene key="qrReader" component={QrReader} title="QR Reader"/>
+          <Scene key="login" component={Login} title="Login"/>
+          <Scene key="register" component={Register} title="Register"/>
+        </Scene>
+      </Router> 
     );
   }
 }
