@@ -68,9 +68,10 @@ export default class App extends React.Component {
         <Registration />
         {/* <Login /> */}
 
+        {/* sample for HTTP call */}
 
-        <BasicText text={this.state.patient.info}/>
-        <BasicText text={this.state.patient.details}/>
+        {/* <BasicText text={this.state.patient.info} />
+        <BasicText text={this.state.patient.details} /> */}
       </View>
     );
   }
@@ -81,7 +82,8 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 500,
+    height: '100%',
+    width: '100%',
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
