@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import BasicText from './BasicText';
 import Registration from './Registration';
-
+import ScanScreen from './ScanScreen';
 
 
 // async REST call, id must come from QR code
@@ -16,7 +16,6 @@ import Registration from './Registration';
 //       console.error(error);
 //     });
 // }
-
 
 
 export default class App extends React.Component {
@@ -55,6 +54,7 @@ export default class App extends React.Component {
       .catch((error) => {
         console.error(error);
       });
+
   }
 
 
@@ -64,8 +64,8 @@ export default class App extends React.Component {
 
         {/* COMPONENTS */}
 
-        {/* <Scanner /> */}
-        <Registration />
+        <ScanScreen />
+        {/* <Registration /> */}
         {/* <Login /> */}
 
         {/* sample for HTTP call */}
@@ -89,6 +89,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
 
 });
