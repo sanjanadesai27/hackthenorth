@@ -8,9 +8,27 @@ import { Form,
   SwitchField, PickerField,DatePickerField,TimePickerField
 } from 'react-native-form-generator';
 
+
 APP_LOGO = "https://facebook.github.io/react/img/logo_og.png";
 
-export default class Register extends Component {
+// this could be in a seperate file too
+// class TextField extends Component {
+//   render() {
+//     return (
+//         <View>
+//           <Text> {this.props.label}
+//           </Text>
+//           <TextInput
+//             style={{height: 40}}
+//             placeholder="Type here"
+//             onChangeText={(text) => this.setState({text})}
+//           />
+//         </View>
+//     );
+//   }
+// }
+
+class Registration extends Component {
 
   constructor(props) {
     super(props);
@@ -26,10 +44,30 @@ export default class Register extends Component {
   }
 
   handleFormChange(formData){
+    /*
+    formData will contain all the values of the form,
+    in this example.
+    */
+
+    // formData = {
+    //   first_name:"",
+    //   last_name:"",
+    //   gender: '',
+    //   country: '',
+    //   city: '',
+    //   birthday: Date,
+    //   blood_type: '',
+    //   allergies: '',
+    //   major_diagnosis: '',
+    //   notes: ''
+    //   // has_accepted_conditions: bool
+    // }
+
     this.setState({formData:formData});
     this.setMessageVisible(!this.state.modalVisible);   // hide message again
     this.props.onFormChange && this.props.onFormChange(formData);
   }
+
 
   registerPatient(formData) {
 
@@ -61,10 +99,10 @@ export default class Register extends Component {
       });
   }
 
+
   handleFormFocus(e, component){
     console.log(e, component);
   }
-  
   openTermsAndConditionsURL(){
 
   }
@@ -85,6 +123,7 @@ export default class Register extends Component {
             label="Personal Information">
           <InputField ref='first_name' placeholder='First Name'/>
           <InputField ref='last_name' placeholder='Last Name'/>
+          {/* <Separator /> */}
           <PickerField style={[{backgroundColor: '#61d062'}]}
             ref='gender'
             label='Gender'
@@ -127,6 +166,13 @@ export default class Register extends Component {
               multiline={true}
               ref='notes'
               placeholder='Notes (Specify all other patient info)' />
+
+
+          {/* <TimePickerField ref='alarm_time'
+        placeholder='Set Alarm'/> */}
+          {/* <DatePickerField ref='meeting'
+            minimumDate={new Date('1/1/1900')}
+            maximumDate={new Date()} mode="datetime" placeholder='Meeting'/> */}
           </Form>
 
           {/* onPress={this.handleFormChange.bind(this)} */}
@@ -144,8 +190,60 @@ export default class Register extends Component {
           </Text>
         </ScrollView>
       );
+    // return (
+    //   // Try setting `alignItems` to 'flex-start'
+    //   // Try setting `justifyContent` to `flex-end`.
+    //   // Try setting `flexDirection` to `row`.
+    //   <View style={{
+    //     flex: 1,
+    //     flexDirection: 'column',
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //   }}>
+    //     <View style={styles.text_input_container }>
+    //       <TextField label="First Name:"/>
+    //
+    //       {/* <Text>First Name:
+    //       </Text>
+    //       <TextInput
+    //         style={{height: 40}}
+    //         placeholder="Type here"
+    //         onChangeText={(text) => this.setState({text})}
+    //       /> */}
+    //
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Last Name:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Birthday:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Blood Type:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Gender:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Country:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="City:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Allergies:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Major Diagnosis:"/>
+    //     </View>
+    //     <View style={styles.text_input_container}>
+    //       <TextField label="Notes: "/>
+    //     </View>
+    //   </View>
+    // );
   }
 };
+
 
 // STYLESHEETS
 
@@ -163,4 +261,5 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = Register;
+
+module.exports = Registration;
