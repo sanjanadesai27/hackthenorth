@@ -17,7 +17,7 @@ export default class AppContainer extends Component {
           <Scene key="home" component={Home} title="Home" />
           <Scene key="qrReader" component={QrReader} title="QR Reader"/>
           <Scene key="login" component={Login} title="Login"/>
-          <Scene key="register" component={Register} title="Register"/>
+          <Scene key="register" component={Register} title="Register Patient"/>
           <Scene key="userInfo" component={UserInfo} title="User Info" />
         </Scene>
       </Router>

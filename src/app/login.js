@@ -11,7 +11,7 @@ import { StyleSheet, Text, TextInput, View, ScrollView,
 
  import { Actions } from 'react-native-router-flux';
 
- APP_LOGO = "https://facebook.github.io/react/img/logo_og.png";
+ APP_LOGO = "https://image.flaticon.com/icons/svg/503/503925.svg";
 
 export default class Login extends Component {
 
@@ -116,10 +116,6 @@ export default class Login extends Component {
     return (
         <ScrollView keyboardShouldPersistTaps="always"
           style={styles.scrollView}>
-          <Image
-            style={{width: 50, height: 50}}
-            source={{uri: APP_LOGO}}
-          />
 
         <Form
             ref='loginForm'
@@ -139,6 +135,9 @@ export default class Login extends Component {
               secureTextEntry = {true}
             /> */}
 
+            <View style={styles.spacer}>
+            </View>
+
           <InputField ref='email'
             placeholder='Email:'
             valueStyle= {{color: 'red'}} />
@@ -149,12 +148,25 @@ export default class Login extends Component {
 
           {/* onPress={this.handleFormChange.bind(this)} */}
 
+          <View style={styles.spacer}>
+          </View>
+
           <Button
             style={styles.loginButton}
             onPress={this.loginUser.bind(this)}
             title="Login User"
             accessibilityLabel="Login User"
           />
+
+          <View style={styles.spacer}>
+          </View>
+
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require("../../styles/first-aid-kit.png")}
+            />
+          </View>
 
           {/* <Text>{JSON.stringify(this.state.formData)}</Text>
           <Text style={styles.message}>
@@ -192,7 +204,21 @@ const styles = StyleSheet.create({
     paddingBottom:10,
     height:'100%',
     width: '100%'
-  }
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
+  logoContainer: {
+    width: '25%',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+  spacer: {
+    backgroundColor: 'transparent',
+    height: 50,
+    width: '100%'
+  },
 });
 
 module.exports = Login;

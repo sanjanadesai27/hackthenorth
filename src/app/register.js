@@ -10,7 +10,7 @@ import { Form,
 
 import { Actions } from 'react-native-router-flux';
 
-APP_LOGO = "https://facebook.github.io/react/img/logo_og.png";
+APP_LOGO = "https://image.flaticon.com/icons/svg/503/503925.svg";
 
 export default class Register extends Component {
 
@@ -90,10 +90,12 @@ export default class Register extends Component {
     return (
         <ScrollView keyboardShouldPersistTaps="always"
           style={styles.scrollingView}>
-          <Image
-            style={{width: 50, height: 50}}
-            source={{uri: APP_LOGO}}
-          />
+          {/* <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require("../../styles/first-aid-kit.png")}
+            />
+          </View> */}
 
         <Form
             ref='registrationForm'
@@ -145,7 +147,6 @@ export default class Register extends Component {
             ref="has_accepted_conditions"
             helpText='Please read carefully the terms & conditions'/> */}
 
-
             <InputField ref='blood_type' placeholder='Blood Type'/>
             <InputField ref='allergies' placeholder='Allergies (comma-separated values)'/>
 
@@ -163,7 +164,7 @@ export default class Register extends Component {
 
           {/* onPress={this.handleFormChange.bind(this)} */}
 
-          <Separator/>
+          {/* <Separator/> */}
 
           <Button
             onPress={this.registerPatient.bind(this)}
@@ -171,14 +172,16 @@ export default class Register extends Component {
             color="#3399ff"
             accessibilityLabel="Register Patient"
           />
+          <View style={styles.spacer}>
+          </View>
 
-          <Text>{JSON.stringify(this.state.formData)}</Text>
+          {/* <Text>{JSON.stringify(this.state.formData)}</Text>
           <Text style={styles.message}>
             {this.state.message}
           </Text>
           <Text style={styles.message}>
             {this.state.debug}
-          </Text>
+          </Text> */}
         </ScrollView>
       );
   }
@@ -212,6 +215,15 @@ const styles = StyleSheet.create({
   halfRowRight: {
     width: '40%',
     marginLeft: 10
+  },
+  logo: {
+    width: 25,
+    height: 25,
+  },
+  logoContainer: {
+    width: '25%',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 });
 
