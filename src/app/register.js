@@ -85,17 +85,46 @@ export default class Register extends Component {
             label="Personal Information">
           <InputField ref='first_name' placeholder='First Name'/>
           <InputField ref='last_name' placeholder='Last Name'/>
-          <PickerField placeholderStyle={styles.picker}
-            ref='gender'
-            label='Gender'
-            options={{
-              "": '',
-              male: 'Male',
-              female: 'Female',
-              other: 'Other'
-            }}/>
-          <InputField ref='country' placeholder='Country'/>
-          <InputField ref='city' placeholder='City'/>
+
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={styles.halfRow}>
+              <Text>
+                Birthday
+              </Text>
+              <DatePickerField
+                ref='birthday'
+                minimumDate={new Date('1/1/1900')}
+                maximumDate={new Date()}
+                />
+            </View>
+
+            <View style={styles.halfRowRight}>
+              <Text>
+                Gender
+              </Text>
+              <PickerField
+                ref='gender'
+                options={{
+                  "": '',
+                  male: 'Male',
+                  female: 'Female',
+                  other: 'Other'
+                }}/>
+            </View>
+
+          </View>
+
+          <InputField ref='address' placeholder='Address'/>
+
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={styles.halfRow}>
+              <InputField ref='city' placeholder='City'/>
+            </View>
+
+            <View style={styles.halfRowRight}>
+              <InputField ref='country' placeholder='Country'/>
+            </View>
+          </View>
 
           {/* <InputField
             multiline={true}
@@ -108,11 +137,6 @@ export default class Register extends Component {
             ref="has_accepted_conditions"
             helpText='Please read carefully the terms & conditions'/> */}
 
-            <DatePickerField placeholderStyle={styles.picker}
-              ref='birthday'
-              minimumDate={new Date('1/1/1900')}
-              maximumDate={new Date()}
-              placeholder='Birthday'/>
 
             <InputField ref='blood_type' placeholder='Blood Type'/>
             <InputField ref='allergies' placeholder='Allergies (comma-separated values)'/>
@@ -130,6 +154,8 @@ export default class Register extends Component {
           </Form>
 
           {/* onPress={this.handleFormChange.bind(this)} */}
+
+          <Separator/>
 
           <Button
             onPress={this.registerPatient.bind(this)}
@@ -169,8 +195,12 @@ const styles = StyleSheet.create({
     height:'100%',
     width: '100%'
   },
-  picker: {
-    backgroundColor: '#3399ff'
+  halfRow: {
+    width: '50%',
+  },
+  halfRowRight: {
+    width: '40%',
+    marginLeft: 10
   }
 });
 

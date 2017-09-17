@@ -8,14 +8,13 @@ import Home from './src/app/home.js';
 import QrReader from './src/app/qrReader.js';
 import UserInfo from './src/app/userInfo.js';
 
-
 //this is our index
 export default class AppContainer extends Component {
   render() {
     return (
-      <Router sceneStyle={styles.sceneButtons}>
+      <Router>
         <Scene key="root">
-          <Scene key="home" component={Home} title="Home"/>
+          <Scene key="home" component={Home} title="Home" />
           <Scene key="qrReader" component={QrReader} title="QR Reader"/>
           <Scene key="login" component={Login} title="Login"/>
           <Scene key="register" component={Register} title="Register"/>

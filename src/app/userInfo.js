@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, ScrollView,
-  Modal, TouchableHighlight, Button, Image, ListView
+  Modal, TouchableHighlight, Button, Image
  } from 'react-native';
 
 // import { Form,
