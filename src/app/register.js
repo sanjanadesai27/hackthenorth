@@ -18,6 +18,7 @@ export default class Register extends Component {
       formData: {},
       message: '',
       messageVisible: false,
+      debug: '',
     }
   }
 
@@ -33,7 +34,9 @@ export default class Register extends Component {
 
   registerPatient(formData) {
 
-    fetch('https://jsonplaceholder.typicode.com/posts', {
+    // https://jsonplaceholder.typicode.com/posts
+
+    fetch('http://72a6f727.ngrok.io/auth', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -41,14 +44,29 @@ export default class Register extends Component {
       },
       body: JSON.stringify(this.state.formData)
     })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        // let responseJsonStr = JSON.stringify()
+      .then((response) => {
+        responseJson = response.json();
+
         this.setState({
-          message: 'Successfully created' + JSON.stringify(responseJson),
-          formData: {}
-          // reset to empty
+          debug: JSON.stringify(response)
         });
+
+        if (response["status"] !== 200) {
+          this.setState({
+            message: 'Errors: '
+          });
+        }
+        else {    // successful
+          this.setState({
+            message: 'Successful:' ,
+            formData: {}
+            // reset to empty
+
+
+            // TODO: redirect to home
+          });
+        }
+
         this.setMessageVisible(!this.state.modalVisible);
         // return responseJson.movies;
       })
@@ -83,48 +101,39 @@ export default class Register extends Component {
             // onFocus={this.handleFormFocus.bind(this)}
             onChange={this.handleFormChange.bind(this)}
             label="Personal Information">
+
+            <InputField ref='email' placeholder='Email'/>
+            <InputField ref='password' placeholder='Password'/>
+            <InputField ref='password_confirmation' placeholder='Confirm Password'/>
+
           <InputField ref='first_name' placeholder='First Name'/>
           <InputField ref='last_name' placeholder='Last Name'/>
 
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={styles.halfRow}>
-              <Text>
-                Birthday
-              </Text>
-              <DatePickerField
-                ref='birthday'
-                minimumDate={new Date('1/1/1900')}
-                maximumDate={new Date()}
-                />
-            </View>
+          <Text>
+            Birthday
+          </Text>
+          <DatePickerField
+            ref='birthday'
+            minimumDate={new Date('1/1/1900')}
+            maximumDate={new Date()}
+            />
 
-            <View style={styles.halfRowRight}>
-              <Text>
-                Gender
-              </Text>
-              <PickerField
-                ref='gender'
-                options={{
-                  "": '',
-                  male: 'Male',
-                  female: 'Female',
-                  other: 'Other'
-                }}/>
-            </View>
+            <Text>
+              Gender
+            </Text>
+            <PickerField
+              ref='gender'
+              options={{
+                "": '',
+                male: 'Male',
+                female: 'Female',
+                other: 'Other'
+              }}/>
 
-          </View>
 
           <InputField ref='address' placeholder='Address'/>
-
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={styles.halfRow}>
-              <InputField ref='city' placeholder='City'/>
-            </View>
-
-            <View style={styles.halfRowRight}>
-              <InputField ref='country' placeholder='Country'/>
-            </View>
-          </View>
+          <InputField ref='city' placeholder='City'/>
+          <InputField ref='country' placeholder='Country'/>
 
           {/* <InputField
             multiline={true}
@@ -164,10 +173,13 @@ export default class Register extends Component {
             accessibilityLabel="Register Patient"
           />
 
-          {/* <Text>{JSON.stringify(this.state.formData)}</Text>
+          <Text>{JSON.stringify(this.state.formData)}</Text>
           <Text style={styles.message}>
             {this.state.message}
-          </Text> */}
+          </Text>
+          <Text style={styles.message}>
+            {this.state.debug}
+          </Text>
         </ScrollView>
       );
   }

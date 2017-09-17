@@ -18,6 +18,8 @@ export default class Login extends Component {
     this.state = {
       formData: {},
       message: '',
+      debug: '',
+      userAuth: {},
       messageVisible: false,
     }
   }
@@ -34,7 +36,9 @@ export default class Login extends Component {
 
   loginUser(formData) {
 
-    fetch('https://jsonplaceholder.typicode.com/posts', {
+    // https://jsonplaceholder.typicode.com/posts
+
+    fetch('http://72a6f727.ngrok.io/auth/sign_in', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -42,12 +46,30 @@ export default class Login extends Component {
       },
       body: JSON.stringify(this.state.formData)
     })
-      .then((response) => response.json())
-      .then((responseJson) => {
+      // .then((response) => response.json())
+
+      .then((response) => {
+        this.setState({
+          debug: JSON.stringify(response)
+        });
+
+        responseJson = response.json();
+        responseHeaders = response.headers;
+
         // let responseJsonStr = JSON.stringify()
         this.setState({
-          message: 'Successful login' + JSON.stringify(responseJson),
-          formData: {}
+          // message: 'Successful login' + JSON.stringify(responseJson),
+          message: 'Successful login',
+          formData: {},
+          userAuth: {
+            'access-token': responseHeaders['access-token'],
+            'client': responseHeaders['client'],
+            'token-type': responseHeaders['token-type'],
+            'uid': responseHeaders['uid']
+          }
+
+          // TODO
+          // ---> Redirect to QR READER passing userAuth <---
           // reset to empty
         });
         this.setMessageVisible(!this.state.modalVisible);
@@ -103,8 +125,8 @@ export default class Login extends Component {
               secureTextEntry = {true}
             /> */}
 
-          <InputField ref='username'
-            placeholder='Username:'
+          <InputField ref='email'
+            placeholder='Email:'
             valueStyle= {{color: 'red'}} />
           <InputField ref='password'
             placeholder='Password: '
@@ -120,10 +142,13 @@ export default class Login extends Component {
             accessibilityLabel="Login User"
           />
 
-          {/* <Text>{JSON.stringify(this.state.formData)}</Text>
+          <Text>{JSON.stringify(this.state.formData)}</Text>
           <Text style={styles.message}>
             {this.state.message}
-          </Text> */}
+          </Text>
+          <Text style={styles.message}>
+            {this.state.debug}
+          </Text>
         </ScrollView>
       );
   }
