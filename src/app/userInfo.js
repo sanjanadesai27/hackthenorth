@@ -3,6 +3,8 @@ import { StyleSheet, Text, TextInput, View, ScrollView,
   Modal, TouchableHighlight, Button, Image, Linking
  } from 'react-native';
 
+ import { Actions } from 'react-native-router-flux';
+
 // import { Form,
 //   Separator,InputField, LinkField,
 //   SwitchField, PickerField,DatePickerField,TimePickerField
@@ -107,11 +109,6 @@ export default class UserInfo extends Component {
               color="#3399ff"
               accessibilityLabel="Get Patient Details"
             />
-
-            {/* <Text style={{color: 'blue'}}
-                  onPress={() => Linking.openURL({this.state.detailsLink})}>
-              Google
-            </Text> */}
 
             <Text>{JSON.stringify(this.state.userDetails)}</Text>
             <Text style={styles.message}>

@@ -8,6 +8,8 @@ import { Form,
   SwitchField, PickerField,DatePickerField,TimePickerField
 } from 'react-native-form-generator';
 
+import { Actions } from 'react-native-router-flux';
+
 APP_LOGO = "https://facebook.github.io/react/img/logo_og.png";
 
 export default class Register extends Component {
@@ -60,11 +62,8 @@ export default class Register extends Component {
           this.setState({
             message: 'Successful:' ,
             formData: {}
-            // reset to empty
-
-
-            // TODO: redirect to home
           });
+          Actions.home();
         }
 
         this.setMessageVisible(!this.state.modalVisible);
@@ -103,8 +102,8 @@ export default class Register extends Component {
             label="Personal Information">
 
             <InputField ref='email' placeholder='Email'/>
-            <InputField ref='password' placeholder='Password'/>
-            <InputField ref='password_confirmation' placeholder='Confirm Password'/>
+            <InputField ref='password' placeholder='Password' secureTextEntry = {true}/>
+            <InputField ref='password_confirmation' placeholder='Confirm Password' secureTextEntry = {true}/>
 
           <InputField ref='first_name' placeholder='First Name'/>
           <InputField ref='last_name' placeholder='Last Name'/>

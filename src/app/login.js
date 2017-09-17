@@ -9,6 +9,8 @@ import { StyleSheet, Text, TextInput, View, ScrollView,
    SwitchField, PickerField,DatePickerField,TimePickerField
  } from 'react-native-form-generator';
 
+ import { Actions } from 'react-native-router-flux';
+
  APP_LOGO = "https://facebook.github.io/react/img/logo_og.png";
 
 export default class Login extends Component {
@@ -56,22 +58,34 @@ export default class Login extends Component {
         responseJson = response.json();
         responseHeaders = response.headers;
 
-        // let responseJsonStr = JSON.stringify()
-        this.setState({
-          // message: 'Successful login' + JSON.stringify(responseJson),
-          message: 'Successful login',
-          formData: {},
-          userAuth: {
-            'access-token': responseHeaders['access-token'],
-            'client': responseHeaders['client'],
-            'token-type': responseHeaders['token-type'],
-            'uid': responseHeaders['uid']
-          }
+        if (response["status"] !== 200) {
+          this.setState({
+            message: 'Errors: '
+          });
+        }
+        else {    // successful
 
-          // TODO
-          // ---> Redirect to QR READER passing userAuth <---
-          // reset to empty
-        });
+          // let responseJsonStr = JSON.stringify()
+          this.setState({
+            // message: 'Successful login' + JSON.stringify(responseJson),
+            message: 'Successful login',
+            formData: {},
+            userAuth: {
+              'access-token': responseHeaders['access-token'],
+              'client': responseHeaders['client'],
+              'token-type': responseHeaders['token-type'],
+              'uid': responseHeaders['uid']
+            }
+          });
+
+          // this.setState({
+          //   message: 'Successful:' ,
+          //   formData: {}
+          // });
+
+          Actions.qrReader();
+        }
+
         this.setMessageVisible(!this.state.modalVisible);
         // return responseJson.movies;
       })
@@ -142,13 +156,13 @@ export default class Login extends Component {
             accessibilityLabel="Login User"
           />
 
-          <Text>{JSON.stringify(this.state.formData)}</Text>
+          {/* <Text>{JSON.stringify(this.state.formData)}</Text>
           <Text style={styles.message}>
             {this.state.message}
           </Text>
           <Text style={styles.message}>
             {this.state.debug}
-          </Text>
+          </Text> */}
         </ScrollView>
       );
   }
