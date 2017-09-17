@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Linking } from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
+import { Actions } from 'react-native-router-flux';
+import UserInfo from './userInfo.js';
 
 export default class QrReader extends React.Component {
   state = {
     hasCameraPermission: null,
   }
-  
+
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({hasCameraPermission: status === 'granted'});
@@ -33,6 +35,7 @@ export default class QrReader extends React.Component {
 
   _handleBarCodeRead = ({ type, data }) => {
     // Linking.openURL(data).catch(err => console.error('An error occured', err));
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    Actions.userInfo({ data });
   }
 }

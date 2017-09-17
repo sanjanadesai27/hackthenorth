@@ -6,6 +6,7 @@ import Login from './src/app/login.js';
 import Register from './src/app/register.js';
 import Home from './src/app/home.js';
 import QrReader from './src/app/qrReader.js';
+import UserInfo from './src/app/userInfo.js';
 
 
 //this is our index
@@ -18,6 +19,7 @@ export default class AppContainer extends Component {
           <Scene key="qrReader" component={QrReader} title="QR Reader"/>
           <Scene key="login" component={Login} title="Login"/>
           <Scene key="register" component={Register} title="Register"/>
+          <Scene key="userInfo" component={UserInfo} title="User Info" />
         </Scene>
       </Router>
     );
