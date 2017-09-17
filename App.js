@@ -24,7 +24,6 @@ export default class AppContainer extends Component {
   }
 }
 
-
 // STYLESHEETS
 
 const styles = StyleSheet.create({
