@@ -120,10 +120,10 @@ export default class Login extends Component {
             accessibilityLabel="Login User"
           />
 
-          <Text>{JSON.stringify(this.state.formData)}</Text>
+          {/* <Text>{JSON.stringify(this.state.formData)}</Text>
           <Text style={styles.message}>
             {this.state.message}
-          </Text>
+          </Text> */}
         </ScrollView>
       );
   }

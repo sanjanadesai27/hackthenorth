@@ -13,7 +13,7 @@ import UserInfo from './src/app/userInfo.js';
 export default class AppContainer extends Component {
   render() {
     return (
-      <Router>
+      <Router sceneStyle={styles.sceneButtons}>
         <Scene key="root">
           <Scene key="home" component={Home} title="Home"/>
           <Scene key="qrReader" component={QrReader} title="QR Reader"/>
@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  sceneButtons: {
+  }
 
 
 });

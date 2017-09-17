@@ -85,7 +85,7 @@ export default class Register extends Component {
             label="Personal Information">
           <InputField ref='first_name' placeholder='First Name'/>
           <InputField ref='last_name' placeholder='Last Name'/>
-          <PickerField style={[{backgroundColor: '#61d062'}]}
+          <PickerField placeholderStyle={styles.picker}
             ref='gender'
             label='Gender'
             options={{
@@ -108,7 +108,7 @@ export default class Register extends Component {
             ref="has_accepted_conditions"
             helpText='Please read carefully the terms & conditions'/> */}
 
-            <DatePickerField
+            <DatePickerField placeholderStyle={styles.picker}
               ref='birthday'
               minimumDate={new Date('1/1/1900')}
               maximumDate={new Date()}
@@ -134,14 +134,14 @@ export default class Register extends Component {
           <Button
             onPress={this.registerPatient.bind(this)}
             title="Register Patient"
-            color="#841584"
+            color="#3399ff"
             accessibilityLabel="Register Patient"
           />
 
-          <Text>{JSON.stringify(this.state.formData)}</Text>
+          {/* <Text>{JSON.stringify(this.state.formData)}</Text>
           <Text style={styles.message}>
             {this.state.message}
-          </Text>
+          </Text> */}
         </ScrollView>
       );
   }
@@ -168,6 +168,9 @@ const styles = StyleSheet.create({
     paddingBottom:10,
     height:'100%',
     width: '100%'
+  },
+  picker: {
+    backgroundColor: '#3399ff'
   }
 });
 
