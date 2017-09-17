@@ -64,7 +64,7 @@ export default class Register extends Component {
   handleFormFocus(e, component){
     console.log(e, component);
   }
-  
+
   openTermsAndConditionsURL(){
 
   }
@@ -72,7 +72,7 @@ export default class Register extends Component {
   render() {
     return (
         <ScrollView keyboardShouldPersistTaps="always"
-          style={{paddingLeft:10,paddingRight:10,paddingTop:10,paddingBottom:10, height:'100%', width: '100%'}}>
+          style={styles.scrollingView}>
           <Image
             style={{width: 50, height: 50}}
             source={{uri: APP_LOGO}}
@@ -160,6 +160,14 @@ const styles = StyleSheet.create({
   },
   message: {
     backgroundColor: 'white'
+  },
+  scrollingView: {
+    paddingLeft:10,
+    paddingRight:10,
+    paddingTop:10,
+    paddingBottom:10,
+    height:'100%',
+    width: '100%'
   }
 });
 
